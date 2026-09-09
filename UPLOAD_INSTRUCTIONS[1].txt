@@ -1,0 +1,13 @@
+BLACK FLAG VOYAGE v36 - GITHUB UPLOAD
+
+Upload ALL SEVEN files below into the root of the Black-Flag-Voyage repository:
+1. index.html (rename Black_Flag_Voyage_v36.html to index.html before upload)
+2. manifest.json
+3. service-worker.js
+4. apple-touch-icon.png
+5. icon-192.png
+6. icon-512.png
+7. icon-maskable-512.png
+
+After upload, click Commit changes. Then open the live GitHub Pages site over HTTPS.
+If an older icon remains, remove the old Home Screen shortcut/app, refresh the website, and install it again.
