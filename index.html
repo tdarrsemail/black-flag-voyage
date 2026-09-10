@@ -1,8 +1,8 @@
-<!-- Black Flag Voyage V77: added Cache-Control/Pragma/Expires meta tags so browsers stop aggressively caching this page. No service worker exists in this app, so this closes the remaining caching gap confirmed by incognito-vs-regular-browser testing (v76 already fixed the real infinite-loop freeze bug). --><!DOCTYPE html>
+<!-- Black Flag Voyage V79: Live Position Broadcasting now auto-resumes. Tapping "Start Broadcasting" saves an intent flag (localStorage) that persists even after the app/tab is fully closed. Reopening the app (any time, any day) automatically resumes broadcasting with no button tap needed. Only an explicit tap on "Stop Broadcasting" clears that intent. If the OS/browser denies location permission outright, the intent auto-clears so it won't keep silently failing forever. Note: OS-level rules still pause background JS while the phone is locked or the app is fully closed in the background - this cannot resume broadcasting while fully closed, only the moment it's reopened. Builds on V78's auto-cache-refresh, V77's cache headers, and V76's infinite-loop freeze fix. --><!DOCTYPE html>
 
 <!-- saved from url=(0157)file:///C:/Users/tdarr/AppData/Local/Temp/MicrosoftEdgeDownloads/a47ec4b0-ec97-46db-a5a3-81f7a62e12cd/Black_Flag_Voyage_V8_Captains_Journal_Banner_Final.html -->
 <html><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><title>Black Flag Voyage</title><style>*{box-sizing:border-box}:root{--g:#d9ad57;--t:#f7e8bd;--m:#b8aa87;--r:#79271f;--l:#354f47}body{margin:0;background:#020907;color:var(--t);font:15px/1.45 system-ui,-apple-system,sans-serif}.app{max-width:560px;min-height:100vh;margin:auto;padding-bottom:100px;background:linear-gradient(rgba(9,22,19,.22),rgba(6,15,13,.34)),url('images/bg-app-body.jpg') center/cover,#0b201c}.top{position:sticky;top:0;z-index:30;height:76px;padding:10px 58px 9px 15px;background:linear-gradient(rgba(7,20,18,.30),rgba(7,20,18,.42)),url('images/bg-topbar.jpg') center/cover;border-bottom:1px solid var(--l)}.top small,.k{display:block;color:var(--g);font-size:9px;font-weight:900;letter-spacing:.13em}.top small.tagline-img{margin-bottom:3px}.top small.tagline-img img{display:block;height:24px;width:auto;max-width:100%}.top b{font:800 18px Georgia}.hamb{position:fixed;z-index:60;top:18px;right:max(10px,calc((100vw - 560px)/2 + 10px));width:40px;height:40px;border:1px solid var(--g);border-radius:13px;background:#122721;color:#ffe6a8;font-size:21px}.screen{display:none;padding:14px 14px 108px}.screen.on{display:block}.cover{margin:-14px -14px 16px;border-radius:0 0 28px 28px;overflow:hidden;background:#071412}.cover img{display:block;width:100%;height:auto}.section{display:flex;justify-content:space-between;align-items:end;margin:20px 2px 10px}.section h2,h2,h3{font-family:Georgia;margin:0}.section span{color:var(--g);font-size:9px}.grid2,.quick{display:grid;grid-template-columns:1fr 1fr;gap:9px}.card{background:linear-gradient(145deg,#10231f,#091714);border:1px solid var(--l);border-radius:17px;overflow:hidden;box-shadow:0 8px 22px #0005}.pad{padding:13px}.stat strong{display:block;color:#ffe09a;font:900 34px Georgia}.action{display:flex;align-items:center;justify-content:center;border:1px solid #aa803d;border-radius:12px;background:var(--r);color:#fff0c9;padding:11px;text-decoration:none;font-weight:800}.treasure img,.hotel img,.wx img{width:100%;display:block;object-fit:cover}.treasure img{height:290px}.mapPin{position:absolute;transform:translate(-50%,-50%);background:none;border:0;padding:0;display:flex;flex-direction:column;align-items:center;cursor:pointer;z-index:2}.mapPinX{color:#c0201a;font-size:22px;font-weight:900;text-shadow:0 0 3px #000,0 0 6px #000,1px 1px 0 #fff2;display:inline-block;font-family:Georgia,serif;transform:rotate(-9deg)}.mapPin small{color:#fff6d8;font-size:9px;font-weight:800;letter-spacing:.03em;text-shadow:0 1px 2px #000,0 0 4px #000;white-space:nowrap;margin-top:-2px}.hotel img,.wx img{height:180px}.leg{padding:13px}.leg>small{color:var(--g)}.leg b{font:800 17px Georgia}.ports,.wxgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:9px 0}.facts{display:grid;grid-template-columns:1fr;gap:7px;margin:9px 0}.ports div,.facts div,.wxgrid div{background:#071310;padding:8px;border-radius:9px}.ports b,.facts span,.wxgrid span{display:block;color:var(--g);font-size:8px}.wxLabel{grid-column:1/-1;background:#13251f!important}.voyageLabel{background:#6d271e!important}.forecast,.notice{margin:9px 0;padding:10px;border-radius:11px;background:#ead49b;color:#2d1b0e;font-size:12px;font-weight:700}.hero{min-height:245px;margin:-14px -14px 14px;padding:20px;display:flex;align-items:flex-end;border-radius:0 0 24px 24px;background-size:cover!important;background-position:center!important;position:relative}.hero:after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 30%,#071412 96%)}.hero>div{position:relative;z-index:1}.hero h2{font-size:31px}.galleryGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.photo{background:#d9bb7b;padding:7px;color:#24160b}.photo img{width:100%;aspect-ratio:4/5;object-fit:cover}.photo textarea,.composer input,.composer textarea,textarea{width:100%;border:1px solid #4c665c;border-radius:9px;background:#071310;color:var(--t);padding:9px;margin-top:7px}.composer textarea{min-height:120px}.dispatch{padding:12px}.reply{margin-top:7px;padding:8px;border-left:3px solid var(--g);background:#071310}.bottom{position:fixed;z-index:40;bottom:0;left:50%;transform:translateX(-50%);width:min(560px,100%);display:grid;grid-template-columns:repeat(6,1fr);padding:7px 4px calc(7px + env(safe-area-inset-bottom));background:linear-gradient(rgba(7,20,18,.35),rgba(7,20,18,.48)),url('images/bg-bottombar.jpg') center/cover;border-top:1px solid var(--l)}.bottom button{border:0;background:none;color:#9e987e;font-size:10px}.bottom i{display:block;font-style:normal;font-size:21px}.bottom button.on{color:#f7d476}.float{position:fixed;z-index:45;bottom:calc(79px + env(safe-area-inset-bottom));width:58px;height:58px;border:4px double #e1b35d;border-radius:50%;color:#ffe7aa;box-shadow:0 8px 22px #000b;display:grid;place-items:center;line-height:1}.float span{font-size:21px}.float b{font-size:8px}.gf{left:max(12px,calc((100vw - 560px)/2 + 12px));background:#173b34}.lf{right:max(12px,calc((100vw - 560px)/2 + 12px));background:#76271f}.shade{display:none;position:fixed;inset:0;z-index:50;background:#000a}.shade.open{display:block}.drawer{position:fixed;z-index:55;top:0;bottom:0;right:0;width:min(88vw,360px);padding:18px 14px;background:#091714;transform:translateX(105%);transition:.25s}.drawer.open{transform:none}.drawer button{width:100%;text-align:left;border:0;border-bottom:1px solid #2b413b;background:none;color:var(--t);padding:13px}.drawer button span{display:block;color:var(--m);font-size:11px}details{background:#10231f;border:1px solid var(--l);border-radius:14px}summary{padding:14px;font-weight:800}details .content{padding:0 14px 14px}.paper{background:#ecd399;color:#2d1b0e;padding:10px;border-radius:9px;margin-top:7px}.ledger{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--l)}
-#captainslog .hero{min-height:130px!important;height:130px!important;padding:10px 16px!important;align-items:flex-start!important}#captainslog .hero h2{margin-top:0;font-size:42px!important}</style><meta content="v77-cache-busting-headers-added" name="app-version"/><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta http-equiv="Pragma" content="no-cache"/><meta http-equiv="Expires" content="0"/><style>
+#captainslog .hero{min-height:130px!important;height:130px!important;padding:10px 16px!important;align-items:flex-start!important}#captainslog .hero h2{margin-top:0;font-size:42px!important}</style><meta content="v79-broadcast-auto-resume" name="app-version"/><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta http-equiv="Pragma" content="no-cache"/><meta http-equiv="Expires" content="0"/><style>
 /* Final responsive Captain's Journal banner */
 #captainslog .captains-journal-banner{
   min-height:0!important;height:clamp(190px,34vw,300px)!important;
@@ -398,7 +398,7 @@ async function postEntry(){
   }
 }
 post.onclick=postEntry;
-function fetchJournal(){renderJournalGallery()}const LEDGER_PASSWORD='4Blondegirls!';const ledgerFields=['costHotels','costFlights','costCar','costOther','costMeals','costSnacks','costMerchandise','costGas','costTips','costPaid'];function money(v){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(Number(v)||0)}function updateLedger(){const costIds=ledgerFields.filter(id=>id!=='costPaid'),total=costIds.reduce((n,id)=>n+(Number($(id)?.value)||0),0),paid=Number($('costPaid')?.value)||0;if($('costTotal'))$('costTotal').textContent=money(total);if($('costBalance'))$('costBalance').textContent=money(Math.max(0,total-paid));ledgerFields.forEach(id=>{const el=$(id);if(el)safe.set('private_'+id,el.value)});const notes=$('costNotes');if(notes)safe.set('private_costNotes',notes.value)}function unlockLedger(){if($('ledgerPassword').value===LEDGER_PASSWORD){$('ledgerLock').style.display='none';$('ledgerPrivate').style.display='block';$('ledgerError').style.display='none';$('ledgerPassword').value='';ledgerFields.forEach(id=>{const el=$(id),v=safe.get('private_'+id);if(el&&v!==null)el.value=v});const notes=$('costNotes');if(notes)notes.value=safe.get('private_costNotes')||'';updateLedger();renderLedgerPhotoManager();}else{$('ledgerError').style.display='block'}}function lockLedger(){$('ledgerPrivate').style.display='none';$('ledgerLock').style.display='block';$('ledgerPassword').value='';$('ledgerError').style.display='none'}$('ledgerUnlock').onclick=unlockLedger;$('ledgerPassword').addEventListener('keydown',e=>{if(e.key==='Enter')unlockLedger()});$('ledgerLockBtn').onclick=lockLedger;ledgerFields.forEach(id=>{const el=$(id);if(el)el.addEventListener('input',updateLedger)});const costNotesEl=$('costNotes');if(costNotesEl)costNotesEl.addEventListener('input',updateLedger);function renderLedgerPhotoManager(){const el=$('ledgerPhotoManager');if(!el)return;const ownItems=pics.map((p,i)=>({src:p.src,label:'Gallery photo',remove:()=>{pics.splice(i,1);savePics();renderPics();renderLedgerPhotoManager();}}));const journalItems=posts.filter(p=>p.img).map(p=>({src:p.img,label:'Journal — '+esc(p.a),remove:()=>{if(FIREBASE_READY&&journalRef&&p._key){journalRef.child(p._key).remove();}else{posts=posts.filter(x=>x!==p);safe.set('posts',JSON.stringify(posts));renderPosts();}renderLedgerPhotoManager();}}));const all=[...ownItems,...journalItems];el.innerHTML=all.length?all.map((it,idx)=>`<div class="photo"><img src="${it.src}"><small style="display:block;margin-top:6px;font-weight:700">${it.label}</small><button class="action" data-ridx="${idx}" type="button" style="margin-top:6px;background:var(--r);width:100%">🗑 Remove</button></div>`).join(''):'<p style="opacity:.7;padding:6px 2px;grid-column:1/-1">No photos yet.</p>';el.querySelectorAll('button[data-ridx]').forEach(btn=>{btn.onclick=()=>all[Number(btn.dataset.ridx)].remove();});}</script><div id="appVersion" style="display:none">v77</div><script>
+function fetchJournal(){renderJournalGallery()}const LEDGER_PASSWORD='4Blondegirls!';const ledgerFields=['costHotels','costFlights','costCar','costOther','costMeals','costSnacks','costMerchandise','costGas','costTips','costPaid'];function money(v){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(Number(v)||0)}function updateLedger(){const costIds=ledgerFields.filter(id=>id!=='costPaid'),total=costIds.reduce((n,id)=>n+(Number($(id)?.value)||0),0),paid=Number($('costPaid')?.value)||0;if($('costTotal'))$('costTotal').textContent=money(total);if($('costBalance'))$('costBalance').textContent=money(Math.max(0,total-paid));ledgerFields.forEach(id=>{const el=$(id);if(el)safe.set('private_'+id,el.value)});const notes=$('costNotes');if(notes)safe.set('private_costNotes',notes.value)}function unlockLedger(){if($('ledgerPassword').value===LEDGER_PASSWORD){$('ledgerLock').style.display='none';$('ledgerPrivate').style.display='block';$('ledgerError').style.display='none';$('ledgerPassword').value='';ledgerFields.forEach(id=>{const el=$(id),v=safe.get('private_'+id);if(el&&v!==null)el.value=v});const notes=$('costNotes');if(notes)notes.value=safe.get('private_costNotes')||'';updateLedger();renderLedgerPhotoManager();}else{$('ledgerError').style.display='block'}}function lockLedger(){$('ledgerPrivate').style.display='none';$('ledgerLock').style.display='block';$('ledgerPassword').value='';$('ledgerError').style.display='none'}$('ledgerUnlock').onclick=unlockLedger;$('ledgerPassword').addEventListener('keydown',e=>{if(e.key==='Enter')unlockLedger()});$('ledgerLockBtn').onclick=lockLedger;ledgerFields.forEach(id=>{const el=$(id);if(el)el.addEventListener('input',updateLedger)});const costNotesEl=$('costNotes');if(costNotesEl)costNotesEl.addEventListener('input',updateLedger);function renderLedgerPhotoManager(){const el=$('ledgerPhotoManager');if(!el)return;const ownItems=pics.map((p,i)=>({src:p.src,label:'Gallery photo',remove:()=>{pics.splice(i,1);savePics();renderPics();renderLedgerPhotoManager();}}));const journalItems=posts.filter(p=>p.img).map(p=>({src:p.img,label:'Journal — '+esc(p.a),remove:()=>{if(FIREBASE_READY&&journalRef&&p._key){journalRef.child(p._key).remove();}else{posts=posts.filter(x=>x!==p);safe.set('posts',JSON.stringify(posts));renderPosts();}renderLedgerPhotoManager();}}));const all=[...ownItems,...journalItems];el.innerHTML=all.length?all.map((it,idx)=>`<div class="photo"><img src="${it.src}"><small style="display:block;margin-top:6px;font-weight:700">${it.label}</small><button class="action" data-ridx="${idx}" type="button" style="margin-top:6px;background:var(--r);width:100%">🗑 Remove</button></div>`).join(''):'<p style="opacity:.7;padding:6px 2px;grid-column:1/-1">No photos yet.</p>';el.querySelectorAll('button[data-ridx]').forEach(btn=>{btn.onclick=()=>all[Number(btn.dataset.ridx)].remove();});}</script><div id="appVersion" style="display:none">v79</div><script>
 (()=>{
  let promptEvent=null;
  const ua=navigator.userAgent||'';
@@ -429,8 +429,40 @@ document.addEventListener('click',function(e){const b=e.target.closest('[data-go
 document.querySelectorAll('img').forEach(function(img){img.addEventListener('error',function(){img.classList.add('image-load-error');img.setAttribute('aria-label',img.alt||'Artwork unavailable');});});
 window.addEventListener('error',function(e){const src=(e.target&&e.target.src)||'';if(e.target&&e.target.tagName==='SCRIPT'&&src.includes('maps.googleapis.com')){byId('shipMapCanvas')?.classList.add('hidden');const fb=byId('shipMapFallback');if(fb){fb.style.display='block';fb.classList.add('show');}}},true);
 if(!document.querySelector('.screen.on'))byId('today')?.classList.add('on');
-const version=byId('appVersion');if(version)version.textContent='v77';
-document.documentElement.dataset.bfvVersion='77';
+const version=byId('appVersion');if(version)version.textContent='v79';
+document.documentElement.dataset.bfvVersion='79';
+})();
+</script>
+<script id="bfv77-auto-cache-refresh">
+(function(){
+'use strict';
+var CURRENT_VERSION='v79';
+var CHECK_KEY='bfv_last_seen_version';
+var RELOAD_GUARD_KEY='bfv_auto_reload_guard';
+function alreadyReloadedThisLoad(){
+  try{return sessionStorage.getItem(RELOAD_GUARD_KEY)==='1'}catch(e){return false}
+}
+function markReloaded(){
+  try{sessionStorage.setItem(RELOAD_GUARD_KEY,'1')}catch(e){}
+}
+function checkForFreshVersion(){
+  if(alreadyReloadedThisLoad())return;
+  fetch(location.pathname+'?_cachecheck='+Date.now(),{cache:'no-store'})
+    .then(function(r){return r.text()})
+    .then(function(html){
+      var m=html.match(/name="app-version"\s+content="([^"]+)"/i)||html.match(/content="([^"]+)"\s+name="app-version"/i);
+      var serverVersion=m&&m[1]?m[1]:null;
+      if(!serverVersion)return;
+      var serverVersionShort=(serverVersion.match(/^v\d+/)||[null])[0];
+      if(serverVersionShort&&serverVersionShort!==CURRENT_VERSION){
+        markReloaded();
+        location.reload(true);
+      }
+    })
+    .catch(function(){});
+}
+if(document.readyState==='complete'){checkForFreshVersion()}
+else{window.addEventListener('load',checkForFreshVersion)}
 })();
 </script>
 <style id="bfv43-stability-css">
@@ -492,21 +524,27 @@ window.addEventListener('pageshow',install);
 'use strict';
 var watchId=null,lastSent=0,hasSynced=false;
 var DATABASE_URL='https://black-flag-voyage-default-rtdb.firebaseio.com';
+var INTENT_KEY='bfv_broadcast_intent';
+var autoResumeAttempted=false;
 function byId(id){return document.getElementById(id)}
 function status(message,isError){var s=byId('broadcastStatus');if(!s)return;s.textContent=message;s.style.color=isError?'#ffb5a5':''}
 function setButton(on){var b=byId('broadcastToggle');if(b)b.textContent=on?'\u23F9 Stop Broadcasting Position':'\uD83D\uDCCD Start Broadcasting Position'}
+function markIntentOn(){try{localStorage.setItem(INTENT_KEY,'1')}catch(e){}}
+function markIntentOff(){try{localStorage.removeItem(INTENT_KEY)}catch(e){}}
+function wantsBroadcast(){try{return localStorage.getItem(INTENT_KEY)==='1'}catch(e){return false}}
 async function sendPosition(payload){
  var response=await fetch(DATABASE_URL+'/shipPosition.json',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),cache:'no-store'});
  if(!response.ok){var detail='HTTP '+response.status;try{detail+=': '+await response.text()}catch(e){}throw new Error(detail)}
  return true;
 }
-function stop(){if(watchId!==null&&navigator.geolocation)navigator.geolocation.clearWatch(watchId);watchId=null;hasSynced=false;setButton(false);status('Broadcasting stopped.',false)}
-async function start(){
- if(watchId!==null){stop();return}
+function stop(userInitiated){if(watchId!==null&&navigator.geolocation)navigator.geolocation.clearWatch(watchId);watchId=null;hasSynced=false;setButton(false);status('Broadcasting stopped.',false);if(userInitiated)markIntentOff();}
+async function start(isAutoResume){
+ if(watchId!==null){stop(true);return}
  if(!window.isSecureContext){status('Location sharing requires the secure HTTPS app address.',true);return}
  if(!navigator.geolocation){status('Location is not supported on this device.',true);return}
  hasSynced=false;
- status('Requesting location permission...',false);setButton(true);
+ markIntentOn();
+ status(isAutoResume?'Resuming broadcasting from your last session...':'Requesting location permission...',false);setButton(true);
  try{
   watchId=navigator.geolocation.watchPosition(async function(p){
    var now=Date.now();if(now-lastSent<5000)return;lastSent=now;
@@ -519,10 +557,17 @@ async function start(){
    }catch(err){
     status('Position found, but live tracking rejected the update: '+(err&&err.message?err.message:'unknown error'),true);
    }
-  },function(err){watchId=null;hasSynced=false;setButton(false);var msg='Location could not be started.';if(err&&err.code===1)msg='Location permission was denied. Allow location access in browser settings, then try again.';else if(err&&err.code===2)msg='The device could not determine its location.';else if(err&&err.code===3)msg='Location request timed out. Move outdoors and try again.';status(msg,true)},{enableHighAccuracy:true,maximumAge:5000,timeout:20000});
+  },function(err){watchId=null;hasSynced=false;setButton(false);var msg='Location could not be started.';if(err&&err.code===1){msg='Location permission was denied. Allow location access in browser settings, then try again.';markIntentOff();}else if(err&&err.code===2)msg='The device could not determine its location.';else if(err&&err.code===3)msg='Location request timed out. Move outdoors and try again.';status(msg,true)},{enableHighAccuracy:true,maximumAge:5000,timeout:20000});
  }catch(err){watchId=null;hasSynced=false;setButton(false);status('Unable to start location sharing: '+(err&&err.message?err.message:'unknown error'),true)}
 }
-function install(){var b=byId('broadcastToggle');if(!b)return;b.type='button';b.onclick=function(e){e.preventDefault();e.stopPropagation();start()};setButton(watchId!==null)}
+function attemptAutoResume(){
+ if(autoResumeAttempted)return;
+ autoResumeAttempted=true;
+ if(watchId!==null)return;
+ if(!wantsBroadcast())return;
+ start(true);
+}
+function install(){var b=byId('broadcastToggle');if(!b)return;b.type='button';b.onclick=function(e){e.preventDefault();e.stopPropagation();start(false)};setButton(watchId!==null);attemptAutoResume()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install);else install();
 window.addEventListener('pageshow',install);
 })();</script><script id="bfv63-ledger-source-fix">(function(){
